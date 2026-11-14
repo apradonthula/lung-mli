@@ -1,0 +1,32 @@
+{
+ "image": "Emphysema_low_mag.jpg",
+ "note": "Outlines (x, y in native px) of structures meeting the exclusion criteria in README.md. Drawn by Claude (not a pathologist) from the image on 2026-11-14 for the user's review; each polygon encloses the structure with its boundary in the adjacent airspace or across the septa that join it. The excluded region is the polygon intersected with the structure's hull (src/exclude.py). 'criterion' cites the README rule; 'confidence' is the annotator's certainty that the rule applies.",
+ "regions": [
+  {"label": "connective band","criterion": "C","confidence": "high","note": "bronchovascular sheath: loose and dense connective tissue, 60-250 px wide, full image height","polygon": [ [  2290,  0 ], [  2690,  0 ], [  2680,  60 ], [  2630,  130 ], [  2610,  200 ], [  2600,  260 ], [  2580,  330 ], [  2545,  380 ], [  2530,  450 ], [  2515,  520 ], [  2520,  600 ], [  2515,  700 ], [  2510,  800 ], [  2505,  880 ], [  2490,  950 ], [  2485,  1000 ], [  2480,  1045 ], [  2400,  1050 ], [  2365,  1065 ], [  2360,  1150 ], [  2355,  1250 ], [  2360,  1300 ], [  2370,  1400 ], [  2380,  1460 ], [  2370,  1520 ], [  2365,  1600 ], [  2350,  1700 ], [  2330,  1800 ], [  2305,  1900 ], [  2300,  1979 ], [  2235,  1979 ], [  2245,  1800 ], [  2240,  1700 ], [  2250,  1600 ], [  2270,  1500 ], [  2275,  1420 ], [  2260,  1350 ], [  2245,  1250 ], [  2235,  1150 ], [  2245,  1080 ], [  2300,  1045 ], [  2370,  1020 ], [  2410,  990 ], [  2415,  950 ], [  2420,  900 ], [  2415,  800 ], [  2425,  700 ], [  2420,  620 ], [  2430,  560 ], [  2435,  450 ], [  2430,  400 ], [  2420,  330 ], [  2400,  250 ], [  2390,  200 ], [  2380,  140 ], [  2300,  130 ], [  2260,  80 ]]
+  },
+  {"label": "vessel (bottom right)","criterion": "V","confidence": "high","note": "lumen with red cells, thick muscular wall and adventitia","polygon": [ [  2290,  1979 ], [  2300,  1880 ], [  2350,  1820 ], [  2400,  1730 ], [  2450,  1660 ], [  2480,  1600 ], [  2540,  1585 ], [  2640,  1580 ], [  2720,  1600 ], [  2765,  1640 ], [  2760,  1690 ], [  2730,  1730 ], [  2690,  1775 ], [  2620,  1815 ], [  2560,  1855 ], [  2510,  1895 ], [  2485,  1940 ], [  2480,  1979 ]]
+  },
+  {"label": "vessel (2100, 650)","criterion": "V","confidence": "high","note": "lumen packed with red cells, wall thicker than septa; includes the cellular segment below it to y~1010","polygon": [ [  2060,  450 ], [  2150,  440 ], [  2200,  480 ], [  2200,  560 ], [  2190,  650 ], [  2200,  760 ], [  2230,  830 ], [  2240,  920 ], [  2230,  1010 ], [  2120,  1015 ], [  2060,  980 ], [  2040,  900 ], [  2050,  820 ], [  2080,  760 ], [  2075,  650 ], [  2065,  560 ], [  2050,  500 ]]
+  },
+  {"label": "vessel (1000, 480)","criterion": "V","confidence": "high","note": "thick concentric wall with a slit lumen containing red cells","polygon": [ [  930,  430 ], [  1000,  410 ], [  1070,  415 ], [  1110,  450 ], [  1120,  520 ], [  1110,  590 ], [  1080,  630 ], [  1000,  645 ], [  940,  640 ], [  905,  600 ], [  905,  520 ], [  915,  460 ]]
+  },
+  {"label": "vessel (1200, 1500)","criterion": "V","confidence": "medium","note": "oval mass with concentric spindle-cell layers (vessel cut obliquely, lumen collapsed); no alveolar lining","polygon": [ [  1150,  1440 ], [  1200,  1390 ], [  1260,  1365 ], [  1330,  1360 ], [  1345,  1400 ], [  1320,  1460 ], [  1280,  1520 ], [  1230,  1560 ], [  1170,  1565 ], [  1135,  1530 ], [  1130,  1480 ]]
+  },
+  {"label": "vessel (1200, 1750)","criterion": "V","confidence": "medium","note": "round mass with concentric layers around a cellular core (vessel in cross-section, lumen collapsed)","polygon": [ [  1090,  1680 ], [  1150,  1655 ], [  1230,  1650 ], [  1290,  1680 ], [  1300,  1760 ], [  1270,  1820 ], [  1180,  1835 ], [  1110,  1820 ], [  1085,  1760 ]]
+  },
+  {"label": "small vessel (1090, 195)","criterion": "V","confidence": "medium","note": "oval lumen 45x40 px inside a cellular wall 20-30 px thick (far smaller than any alveolus here)","polygon": [ [  1015,  165 ], [  1060,  150 ], [  1110,  140 ], [  1160,  150 ], [  1185,  185 ], [  1175,  230 ], [  1140,  255 ], [  1080,  260 ], [  1030,  240 ], [  1010,  200 ]]
+  },
+  {"label": "small vessel (45, 610)","criterion": "V","confidence": "medium","note": "round lumen ~45 px with a continuous wall, at the image edge","polygon": [ [  0,  560 ], [  60,  560 ], [  105,  585 ], [  120,  625 ], [  100,  665 ], [  55,  685 ], [  0,  680 ]]
+  },
+  {"label": "vessel (2125, 1445)","criterion": "V","confidence": "low","note": "oval cellular mass; downgraded to low on 2026-11-14 at the user's review: no lumen or clear concentric layers visible, so it may be a thick septal junction","polygon": [ [  2075,  1400 ], [  2120,  1380 ], [  2175,  1385 ], [  2200,  1420 ], [  2190,  1480 ], [  2150,  1505 ], [  2095,  1500 ], [  2070,  1460 ]]
+  },
+  {"label": "fibrous loop (1400, 1120)","criterion": "C","confidence": "high","note": "eosinophilic fibrous band 30-45 px wide over ~400 px; only the band is outlined, not the septa inside the loop","polygon": [ [  1330,  1260 ], [  1325,  1180 ], [  1340,  1110 ], [  1380,  1060 ], [  1440,  1030 ], [  1500,  1010 ], [  1550,  1000 ], [  1560,  1060 ], [  1520,  1075 ], [  1460,  1085 ], [  1410,  1110 ], [  1380,  1150 ], [  1375,  1210 ], [  1380,  1255 ]]
+  },
+  {"label": "fibrous band (620, 1560)","criterion": "C","confidence": "high","note": "fibrous band 50-90 px wide over ~300 px with spindle nuclei (two fibrous layers)","polygon": [ [  490,  1610 ], [  540,  1580 ], [  600,  1530 ], [  660,  1490 ], [  720,  1460 ], [  770,  1435 ], [  775,  1480 ], [  720,  1540 ], [  650,  1590 ], [  580,  1630 ], [  490,  1665 ]]
+  },
+  {"label": "fibrous nodule (455, 1505)","criterion": "C","confidence": "medium","note": "solid fibrous nodule ~100x120 px at the end of a septum","polygon": [ [  395,  1500 ], [  430,  1460 ], [  470,  1440 ], [  505,  1470 ], [  510,  1530 ], [  480,  1565 ], [  430,  1560 ], [  400,  1530 ]]
+  },
+  {"label": "cellular mass (1535, 370)","criterion": "C","confidence": "low","note": "dense spindle-cell and fibrous tissue ~200x150 px at a junction of several airspaces; no lumen seen; could instead be thickened septa","polygon": [ [  1430,  300 ], [  1500,  275 ], [  1580,  280 ], [  1640,  320 ], [  1650,  400 ], [  1640,  455 ], [  1580,  470 ], [  1510,  450 ], [  1460,  410 ], [  1430,  360 ]]
+  }
+ ]
+}

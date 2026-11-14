@@ -1,0 +1,21 @@
+# Publish only an explicit allowlist; everything else stays local.
+*
+!.gitignore
+!/README.md
+!src/
+!src/*.py
+!outputs/
+!outputs/summary.png
+!data/
+!data/raw/
+!data/raw/commons/
+!data/raw/commons/ATTRIBUTION.md
+__pycache__/
+!LICENSE
+!data/annotations/
+!data/annotations/Emphysema_low_mag_exclude.json
+!outputs/real/
+!outputs/real/traces/
+!outputs/real/traces/trace_A.png
+!outputs/real/traces/trace_B.png
+!outputs/real/traces/trace_C.png
