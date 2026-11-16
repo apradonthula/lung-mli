@@ -8,6 +8,8 @@ Author: Apra Donthula
 - **Demonstration:** one emphysema image.
 - **Main limitations:** Lm is in pixels only, because the image has no pixel size, and the exclusions were drawn by hand by a non-pathologist.
 
+The demonstration image is `Emphysema_low_mag.jpg` (Wikimedia Commons); see [Results](#results) and [Limitations](#limitations) for what the validation does and does not cover.
+
 The image shows one diseased lung: severe emphysema on the left and less
 affected tissue on the right. **The left/right difference reported here is
 variation within one emphysematous lung, not a healthy-vs-emphysema
