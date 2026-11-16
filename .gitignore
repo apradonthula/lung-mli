@@ -19,3 +19,5 @@ __pycache__/
 !outputs/real/traces/trace_A.png
 !outputs/real/traces/trace_B.png
 !outputs/real/traces/trace_C.png
+!requirements.txt
+!outputs/real/render_profile_calibrated.json

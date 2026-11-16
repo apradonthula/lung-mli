@@ -1,5 +1,13 @@
 # Lung MLI pipeline
 
+Author: Apra Donthula
+
+**Summary.** This pipeline segments alveolar tissue in H&E lung images, excludes vessels and connective bundles, and counts air/tissue crossings on test lines to give mean linear intercept (Lm).
+- **Synthetic validation:** the crossing counter is exact on 24 of 24 synthetic masks.
+- **Hand traces:** Lm is within 0.9% of hand traces, pooled over three crops.
+- **Demonstration:** one emphysema image.
+- **Main limitations:** Lm is in pixels only, because the image has no pixel size, and the exclusions were drawn by hand by a non-pathologist.
+
 A pipeline that measures mean linear intercept (Lm) on H&E lung histology,
 validated on synthetic images with known Lm and against hand traces, and
 demonstrated on one emphysema image (`Emphysema_low_mag.jpg`, Wikimedia
@@ -27,6 +35,12 @@ are not in this repository; download them from the URLs listed there into
 | 2. Exclusions | `src/exclude.py` | Removes vessels, airways and connective bundles (criteria below) from the measured region |
 | 3. Line counting | `src/mli.py` | Lm = L / (T/2) on horizontal and vertical test lines every 8 px; min_tissue = 3 px; lines are split at excluded regions |
 
+Setup (developed with Python 3.14.6; exact package versions in `requirements.txt`):
+
+```
+python3 -m pip install -r requirements.txt
+```
+
 Run on the development image:
 
 ```
@@ -36,9 +50,11 @@ python3 -I src/real_sweep.py data/raw/commons/Emphysema_low_mag.jpg outputs/real
 python3 -I src/summary_figure.py data/raw/commons/Emphysema_low_mag.jpg outputs/exclusion outputs/summary.png
 ```
 
-Validation:
+Validation. `outputs/real/render_profile_calibrated.json` is included. It sets the stain and blur used to render synthetic images that match the real image. To regenerate it from the real image, run the first two commands; it takes a few minutes:
 
 ```
+python3 -I src/measure_real.py data/raw/commons/Emphysema_low_mag.jpg outputs/real/real_image_stats.json
+python3 -I src/calibrate_render.py outputs/real/real_image_stats.json outputs/real/render_profile_calibrated.json
 python3 -I src/validate_synthetic.py outputs/synthetic outputs/real/render_profile_calibrated.json
 python3 -I src/compare_walls.py data/raw/commons/Emphysema_low_mag.jpg outputs/real/traces outputs/real/walls_only
 ```
@@ -73,7 +89,11 @@ From `outputs/exclusion/exclusion_lm.csv`. Lengths are in px; the left half is t
 
 The 2% tolerance is met only for the largest airspaces. Lm on the development image (148–185 px) falls in that range.
 
-**Clean-up rules.** Short-run removal and pinhole filling were tested on synthetic artifacts. Pinhole filling biased Lm by about +2%, so it is off.
+**Clean-up rules.** Two clean-up rules were tested on synthetic artifacts; see also [Segmentation choices](#segmentation-choices-step-1).
+- **Short-run removal (`min_tissue`)** deletes tissue runs shorter than a set length along each test line.
+- **Pinhole filling (`min_air`)** fills short air gaps between two tissue runs along a test line.
+
+Pinhole filling biased Lm by +2.2% at `min_air` = 3, because it also closes real narrow gaps. It is **off**.
 
 ### Agreement with hand traces (`src/compare_walls.py`, `outputs/real/walls_only/`)
 
@@ -107,7 +127,15 @@ The edge fraction sets where each wall edge sits: the fraction of the local tiss
 ## Segmentation choices (step 1)
 
 - **Edges.** Each wall edge is placed where stain density crosses half the local tissue level (frac 0.5), chosen against the hand traces above.
-- **Dense holes.** Enclosed holes whose density never drops to airspace level (OD ≤ background + 0.10) are filled. They are pale tissue, not air, such as the pale core of a junction.
+- **Dense holes (on).** Enclosed holes in the 2-D mask are filled only if their stain density never drops to airspace level, i.e. never reaches OD ≤ background + 0.10. They are pale tissue, not air, such as the pale core of a junction. This is not the pinhole rule above, which is off: pinhole filling works on each test line separately and fills any short gap regardless of stain. Dense-hole filling uses the stain, so a real air gap is never filled however small it is.
+- **Short-run removal, `min_tissue` = 3 px.** Along each test line, tissue runs of 1–2 px are deleted. These are one- or two-pixel specks where a line grazes the tip of a wall. Floating fragments are no longer this rule's job: the free-piece rule below removes them as whole objects.
+
+  The synthetic fragment test passed only at 5 px. That test used 3 px fragments beside 5 px walls, so it needed a value above the fragment size but no larger than the walls. It did not show that 5 px suits real images. On this image, 5 px would also delete real thin walls:
+  - About 62% of the 3–4 px runs in the automatic mask lie on hand-traced walls.
+  - The traces themselves contain 3–4 px runs (4.6% of traced tissue runs).
+  - Lm vs the traces worsens from −0.9% to −3.2% pooled.
+  - Lm rises from 164.8 to 170.8 px (+3.6%).
+  - With 0 px, Lm is 161.8.
 - **Free pieces.** Isolated pieces smaller than 300 px are removed as free cells (alveolar macrophages and similar), which are not septa. Pieces touching the image edge are kept. The traced free cells measure 34–207 px in the automatic mask, so 300 px leaves margin. Size alone misclassifies a few long detached wall fragments and a few large round cells (`outputs/real/walls_only/small_pieces.png`).
 
 ## Exclusion criteria (step 2)
