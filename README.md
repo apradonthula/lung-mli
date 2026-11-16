@@ -8,12 +8,6 @@ Author: Apra Donthula
 - **Demonstration:** one emphysema image.
 - **Main limitations:** Lm is in pixels only, because the image has no pixel size, and the exclusions were drawn by hand by a non-pathologist.
 
-A pipeline that measures mean linear intercept (Lm) on H&E lung histology,
-validated on synthetic images with known Lm and against hand traces, and
-demonstrated on one emphysema image (`Emphysema_low_mag.jpg`, Wikimedia
-Commons). What the validation does and does not cover is set out under
-[Results](#results) and [Limitations](#limitations).
-
 The image shows one diseased lung: severe emphysema on the left and less
 affected tissue on the right. **The left/right difference reported here is
 variation within one emphysematous lung, not a healthy-vs-emphysema
@@ -87,7 +81,7 @@ From `outputs/exclusion/exclusion_lm.csv`. Lengths are in px; the left half is t
 | 170 | **+1.4%** | +2.9% | +0.58 |
 | 69 (walls 3–12 px) | +2.9% | +8.5% | +0.57 |
 
-The 2% tolerance is met only for the largest airspaces. Lm on the development image (148–185 px) falls in that range.
+The 2% tolerance is met only for the largest airspaces. Lm on the development image (148–185 px) lies between the 88 px and 170 px test cases, so the expected error there is about +1.4–2%.
 
 **Clean-up rules.** Two clean-up rules were tested on synthetic artifacts; see also [Segmentation choices](#segmentation-choices-step-1).
 - **Short-run removal (`min_tissue`)** deletes tissue runs shorter than a set length along each test line.
@@ -206,7 +200,7 @@ Drawn on 2026-11-14 and reviewed by the author the same day. The figures are `ou
   - blur closes the corners where walls meet
   - walls remain about 0.6–0.9 px/side too thick
 
-  Airspaces in this image (Lm 148–185 px) are in the range where the error is about +1.4%. Normal lung imaged at the same magnification would have smaller airspaces, so its Lm would be overestimated more, which would shrink a healthy-vs-emphysema difference. The synthetic renders match the real image's stain statistics but lack nuclei and internal wall structure.
+  Airspaces in this image (Lm 148–185 px) lie between the 88 px and 170 px test cases, so the expected error is about +1.4–2%. Normal lung imaged at the same magnification would have smaller airspaces, so its Lm would be overestimated more, which would shrink a healthy-vs-emphysema difference. The synthetic renders match the real image's stain statistics but lack nuclei and internal wall structure.
 - **Hand-drawn exclusions.** The 13 regions were outlined by a non-pathologist and reviewed by the author, with no pathologist review. Calls without a visible lumen are the most uncertain. Boundaries where structures meet septa are judgment calls.
 - **32% of tissue excluded.** The excluded regions cover 9.4% of the image but 32% of all tissue. Results depend strongly on them: whole-image Lm rises from 148.4 to 164.8 px (+11%), and the left/right ratio falls from 1.32 to 1.24.
 
